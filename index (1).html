@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  background: whitesmoke;
+}
+
+header{
+  background-color: #fff;
+}
+
+button{
+  padding: 8px;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background: whitesmoke;
+  border: 1px solid black;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  width: 400px;
+}
+
+button:hover{
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.container{
+  width: 95%;
+  margin: auto;
+}
+
+.flashcards{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: auto;
+  margin-top: 10px;
+  padding: 0px 10px;
+}
+
+.flashcard{
+  width: 400px;
+  height: 230px;
+  word-wrap: break-word;
+  margin: auto; 
+  margin-top: 20px;
+  background:#fff;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.9);
+}
+
+</style>
+<title>FLASHCARDS</title>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1 style="color: black;text-align: center;">FLASHCARDS</h1>
+    </div>
+  </header>
+  
+  <div class="container">
+    <div class="flashcard" onclick='showAnswer();'>
+      <div class="flashcards">
+
+      <h2 id="question" style="border-top:1px solid red; padding: 15px; margin-top:30px"></h2>
+      <br><br>
+      <h2 id="answer" style="text-align:center; display:none; color:red"></h2>
+      </div> 
+    </div>
+    <br>
+    <div class="next">
+      <button onclick="showNextCard()"> Next</button>
+      <button onclick="restartCard()"> Restart</button>
+    </div>
+  </div>
+    
+<script>
+
+const questions  = [
+  'put flashcard question 1 here.',
+  'put flashcard question 2 here',
+  'put flashcard question 3 here',
+  'put flashcard question 4 here',
+  'put flashcard question 5 here',
+  'put flashcard question 6 here',
+  'put flashcard question 7 here',
+  'put flashcard question 8 here',
+  'put flashcard question 9 here',
+  'put flashcard question 10 here'
+];
+
+const answers  = [
+  'put flashcard answer 1 here',
+  'put flashcard answer 2 here',
+  'put flashcard answer 3 here',
+  'put flashcard answer 4 here',
+  'put flashcard answer 5 here',
+  'put flashcard answer 6 here',
+  'put flashcard answer 7 here',
+  'put flashcard answer 8 here',
+  'put flashcard answer 9 here',
+  'put flashcard answer 10 here'
+];
+
+
+let i = -1;
+showNextCard();
+
+function showNextCard() {
+  const h2_answer = document.getElementById("answer");
+  h2_answer.style.display = "none";  
+  
+  if(i < questions.length - 1) {
+    i++;
+    document.getElementById("question").innerHTML = questions[i];
+  }
+  else
+  {
+    document.getElementById("question").innerHTML = "END";
+    document.getElementById("answer").innerHTML = "";
+    i++
+  }
+}
+
+function showAnswer() {
+  const h2_answer = document.getElementById("answer");
+  if(i < questions.length) {
+    document.getElementById("answer").innerHTML = answers[i];
+
+    if(h2_answer.style.display == "none")
+      h2_answer.style.display = "block";
+   else
+      h2_answer.style.display = "none";   
+  }
+  else{
+    document.getElementById("answer").innerHTML = "";
+    if(h2_answer.style.display == "none")
+      h2_answer.style.display = "none";
+   else
+      h2_answer.style.display = "none";    
+  }   
+}
+
+function restartCard(){
+  i = -1;
+  showNextCard();
+}
+
+</script>
+</body>
+</html>
